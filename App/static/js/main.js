@@ -9,18 +9,64 @@ $('#Cuenta').click(function () {
 $('#Ingresar').click(function () {
     $('#fondo').hide(1000);
     $('#menu').show(1000);
-    
+    $('#menu1').show(1000);
+
 });
 
 
-$('#1').click(function () {
-alert("bien");
-});
+
+
 
 $('#cerrar').click(function () {
     $('#fondo').show(1000);
-    $('#menu').hide(1000);
+    $('#menu1').hide(1000);
 });
+
+
+$('#int').click(function () {
+    alert("ajaa");
+});
+
+$('#bthorario').click(function () {
+    alert("dfkj");
+});
+
+$('#btgrupos').click(function () {
+    $('#Grupos').show(1000);
+    $('#volver').show(1000);
+    $('#crearC').show(1000);
+    $('#menu1').hide(1000);
+});
+
+$('#btpom').click(function () {
+    $('.Spomodoro').show(1000);
+    $('#volver').show(1000);
+    $('#menu1').hide(1000);
+});
+
+$('#btsnack').click(function () {
+
+});
+
+$('#btVolver').click(function () {
+    $('.Spomodoro').hide(1000);
+    $('#menu1').show(1000);
+    $('#volver').hide(1000);
+});
+
+$('#buscar').click(function () {
+    var inp = $('#inputbuscar').val();
+    var drop = $('#dropc').find('option:selected').text();
+    if (inp == '' && drop == 'Selecciona...') {
+        swal("Error", "Digita o selecciona", "error")
+    } else {
+        if (inp != '') {
+
+        }
+
+    }
+});
+
 
 $('#Crear').click(function () {
     var nom = $('#nombre').val();
@@ -44,3 +90,15 @@ $('#Crear').click(function () {
 
 });
 
+$('#crearGrupo').click(function () {
+
+    swal("Muy bien!", "Has creado una grupo de estudio!", "success");
+});
+
+
+function ConsultasGrupos(nombre) {
+    for (let i = 1; i < 13; i++) {
+    
+    }
+
+}

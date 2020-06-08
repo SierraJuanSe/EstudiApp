@@ -54,6 +54,25 @@ main, #logBody{
     cursor: pointer;
 }
 
+.btn-circle.btn-xl { 
+    width: 70px; 
+    height: 70px; 
+    padding: 10px 16px; 
+    border-radius: 35px; 
+    font-size: 12px; 
+    text-align: center; 
+    position: fixed;
+    left: 85%;
+    top: 85%;
+    box-shadow: 0 0 20px black;
+} 
+
+.hov:hover{
+  
+    opacity: 0.7;
+    cursor: pointer;
+}
+
 .menu i{
 	color: #97b498!important;
 }
@@ -70,4 +89,12 @@ main, #logBody{
     left: 50%;
     transform: translate(-50%,-50%);
     color: #333;
+}
+
+
+
+
+
+#DivCronometro{
+    overflow-x: hidden;
 }

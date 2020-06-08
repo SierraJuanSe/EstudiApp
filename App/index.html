@@ -19,7 +19,13 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <!-- 
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script> -->
 
 </head>
 
@@ -132,11 +138,10 @@
     </div>
     <!-- MENU PRINCIPAL -->
     <div id="menu" style="display: none;">
-        <nav class="navbar navbar-expand-lg bg-warning sombra"
-           >
-           <div class="container">
-            <a><img src="static/img/logo.PNG"></a>
-</div>
+        <nav class="navbar navbar-expand-lg bg-warning sombra">
+            <div class="container">
+                <a><img src="static/img/logo.PNG"></a>
+            </div>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -154,6 +159,9 @@
 
                         </div>
                     </div>
+
+
+
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle bg-info " type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -162,8 +170,10 @@
                             </span>
                         </button>
                         <div class="dropdown-menu  dropleft" aria-labelledby="dropdownMenuButton">
+
                             <a class="dropdown-item" href="#">Configuración</a>
                             <a id="cerrar" class="dropdown-item" href="#">Cerrar Sesion</a>
+
                         </div>
                     </div>
                 </form>
@@ -174,16 +184,16 @@
             <br>
             <div class="col text-center">
                 <h2>Hola, ¿Estas listo para estudiar?</h2>
-           </div>
+            </div>
             <br>
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class=" menu container">
+                        <div id="bthorario" class=" menu container">
                             <div id="panel1" class="card-panel hover">
                                 <br>
                                 <a data-toggle="modal" data-target="#modal1" class="float-right">
-                                    <i  class="material-icons">help</i> </a>
+                                    <i class="material-icons">help</i> </a>
                                 <div class="row">
                                     <div class="col">
                                         <img class="responsive-img" src="static/img/MiHorarioIcon.png">
@@ -198,7 +208,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class=" menu container">
+                        <div id="btgrupos" class=" menu container">
                             <div id="panel1" class="card-panel hover">
                                 <br>
                                 <a data-toggle="modal" data-target="#modal2" class="float-right">
@@ -219,7 +229,7 @@
                     <div class="w-100"></div>
                     <br><br><br>
                     <div class="col">
-                        <div class=" menu container">
+                        <div id="btpom" class=" menu container">
                             <div id="panel1" class="card-panel hover">
                                 <br>
                                 <a data-toggle="modal" data-target="#modal3" class="float-right">
@@ -238,7 +248,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class=" menu container">
+                        <div id="btsnack" class=" menu container">
                             <div id="panel1" class="card-panel hover">
                                 <br>
                                 <a data-toggle="modal" data-target="#modal4" class="float-right">
@@ -361,12 +371,613 @@
 
 
         </div>
+
+        <!-- BOTON VOlVER -->
+
+        <div id="volver" class="container" style="position: absolute;top:120px ;display:none;">
+            <button id="btVolver" type="button" class="btn btn-outline-danger"><span class="material-icons">
+                    arrow_back
+                </span></button>
+        </div>
+
+        <!-- POMODORO -->
+        <div id="DivCronometro" class="Spomodoro" style="display: none;">
+
+            <div class="btn-group" role="group" aria-label="Basic example" style='margin: 50px 350px'>
+
+                <button type="button" style='width:300px; height:75px' class="btn btn-info" id="Btn_pomodoro">
+                    <h3 class="display-5">Pomodoro</h3>
+                </button>
+
+
+                <button type="button" style='width:300px; height:75px' class="btn btn-info" id="Btn_descanso">
+                    <h3 class="display-5">Pequeño Descanso</h3>
+                </button>
+
+
+                <button type="button" style='width:300px; height:75px' class="btn btn-info" id="Btn_descanso2">
+                    <h3 class="display-5">Descanso Largo</h3>
+                </button>
+            </div>
+
+
+            <div class="crono" style='margin: -25px 500px'>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" style='width:600px; height:225px' class="btn btn-dark" id="minutero" disabled>
+                        <h1 style="font-size:150px">25:00</h1>
+                    </button>
+
+                </div>
+
+                <div class="cronometro">
+
+                    <div class="btn-group" role="group" aria-label="Basic example">
+
+                        <button type="button" style='width:200px; height:75px' class="btn btn-dark" id="Btn_pause">
+                            <h1 class="display-5"><svg class="bi bi-pause-fill" width="1em" height="1em"
+                                    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
+                                </svg></h1>
+                        </button>
+
+
+                        <button type="button" style='width:200px; height:75px' class="btn btn-dark" id="Btn_play">
+                            <h1 class="display-5"><svg class="bi bi-play-fill" width="1em" height="1em"
+                                    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                                </svg></h1>
+                        </button>
+
+
+                        <button type="button" style='width:200px; height:75px' class="btn btn-dark" id="Btn_replay">
+                            <h1 class="display-5"><svg class="bi bi-arrow-clockwise" width="1em" height="1em"
+                                    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z" />
+                                    <path fill-rule="evenodd"
+                                        d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z" />
+                                </svg></h1>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div id="Grupos" class="container" style="display: none;background-color: rgba(144, 164, 253, 0.226);">
+
+            <div class="text-center">
+
+
+                <h2>Grupos de Estudio</h2>
+                <br>
+                <div class="row">
+                    <div class="col-1">
+                        <span class="material-icons">
+                            filter_list
+                        </span>
+                    </div>
+                    <div class="col-6">
+
+
+                        <select id="dropc" id="selecG" class="form-control">
+                            <option selected>Selecciona...</option>
+                            <option>Todos</option>
+                            <option>Inscritos</option>
+                            <option>No Inscritos</option>
+                        </select>
+
+                    </div>
+                    <div class="col">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input id="inputbuscar" class="form-control mr-sm-2" type="text" placeholder="Buscar"
+                                aria-label="Search">
+                            <button id="buscar" class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
+                        </form>
+
+                    </div>
+                </div>
+
+                <br>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="diseñoWeb" class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header"  >Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Inscribete</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Estas inscrito/p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Estas inscrito</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Inscribete</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Inscribete</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Inscribete</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Estas inscrito</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Inscribete</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Inscribete</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Estas inscrito</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Inscribete</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="nomG">Diseño web</div>
+                        <div class="card-body text-info">
+                            <h5 class="card-title">Lunes:5pm-6pm</h5>
+                            <p id="si/no" class="card-text">Estas inscrito</p>
+
+                            <div class="row">
+                                <div class="col hov" id="infoDiseño">
+                                    <span class="material-icons">
+                                        info
+                                    </span>
+                                </div>
+                                <div class="col hov" id="chatdiseño">
+                                    <span class="material-icons">
+                                        chat
+                                    </span>
+                                </div>
+                                <div class="col hov" id="addDiseño">
+                                    <span class="material-icons">
+                                        add
+                                    </span>
+                                </div>
+                                <div class="col hov" id="deleteDiseño">
+                                    <span class="material-icons">
+                                        delete
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <button id="crearG" type="button" data-toggle="modal" data-target="#modalCrearC"
+                class="btn btn-danger btn-circle btn-xl">
+
+                <span class="material-icons">
+                    add
+                </span>
+
+            </button>
+
+            <!-- MODAL PARA CREAR UN GRUPO -->
+
+            <!-- Button trigger modal -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalCrearC" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Crear Grupo de Estudio</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Nombre">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="salon">
+                                    </div>
+                                </div>
+                                <br>
+                                <input type="text" class="form-control" placeholder="Tema">
+
+                                <label for="inputState">Dia</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Selecciona</option>
+                                    <option>Lunes</option>
+                                    <option>Martes</option>
+                                    <option>Miercoles</option>
+                                    <option>Jueves</option>
+                                    <option>Viernes</option>
+                                    <option>sabado</option>
+                                </select>
+
+                                Hora de inicio
+                                <input type="time" class="form-control" name="hora" min="18:00" max="21:00"
+                                    step="3600" />
+                                Hora de Fin
+                                <input type="time" class="form-control" name="hora" min="18:00" max="21:00"
+                                    step="3600" />
+
+                            </form>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="crearGrupo" class="btn btn-primary"
+                                data-dismiss="modal">Crear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <!-- CONSULTAS DE LOS GRUPOS -->
+        <div id="consultas" style="display: none;">
+
+        </div>
+
+
     </div>
+
+
+
+
+
 
 
 
 
 </body>
 <script src="static/js/main.js" type="text/javascript"></Script>
+<script src="static/js/crono.js" type="text/javascript"></Script>
 
 </html>
