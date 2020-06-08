@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+  <link rel="stylesheet" href="../css/styleHorario.css">
+  <script src="https://kit.fontawesome.com/a771a08568.js" crossorigin="anonymous"></script>
+
+  <title>Mi Horario EstudiApp</title>
+</head>
+
+<body>
+
+  <div id="div-horario" class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Mi Horario</h2>
+        <hr>
+      </div>
+    </div>
+
+    <div id="div-tablaHorario" class="row">
+      <table class="table table-bordered table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">Lunes</th>
+            <th scope="col">Martes</th>
+            <th scope="col">Miercoles</th>
+            <th scope="col">Jueves</th>
+            <th scope="col">Viernes</th>
+            <th scope="col">Sabado</th>
+            <th scope="col">Domingo</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal fade" id="modal-nuevoEvento" tabindex="-1" role="dialog" aria-labelledby="modal-titulo"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-titulo">Nuevo Evento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="row container">
+              <div class="col-lg-6 form-group">
+                <label for="ipt-materia">Materia</label>
+                <input id="ipt-materia" type="text" class="form-control" placeholder="Nombre de la materia">
+              </div>
+              <div class="col-lg-6 form-group">
+                <label for="ipt-color">Color</label>
+                <select id="ipt-color" class="form-control">
+                  <option class="text-primary" value="bg-primary">azul </option>
+                  <option class="text-success" value="bg-success">verde</option>
+                  <option class="text-danger" value="bg-danger">rojo</option>
+                  <option class="text-warning" value="bg-warning">amarillo</option>
+                  <option class="text-info" value="bg-info">cyan</option>
+                </select>
+              </div>
+              <div class="col-lg-6 col-md-6 form-group">
+                <label for="ipt-horaIn">Entrada</label>
+                <div class="input-group date" id="timePickerIn" data-target-input="nearest">
+                  <input id="ipt-horaIn" type="text" class="form-control datetimepicker-input"
+                    data-target="#timePickerIn" placeholder="00:00 AM" />
+                  <div class="input-group-append" data-target="#timePickerIn" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6  col-md-6 form-group">
+                <label for="ipt-horaOut">Salida</label>
+                <div class="input-group date" id="timePickerOut" data-target-input="nearest">
+                  <input id="ipt-horaOut" type="text" class="form-control datetimepicker-input"
+                    data-target="#timePickerOut" placeholder="00:00 AM" />
+                  <div class="input-group-append" data-target="#timePickerOut" data-toggle="datetimepicker">
+                    <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6  col-md-6 form-group">
+                <label for="ipt-salon">Salon</label>
+                <input id="ipt-salon" type="text" class="form-control" placeholder="Salon">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button id="btn-guardarEvento" type="button" class="btn btn-primary btn-lg">Guardar</button>
+            <button id="btn-borrarEvento" type="button" class="btn btn-secondary btn-lg">Borrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+
+  <script src="../js/horario.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('#timePickerIn').datetimepicker({
+        format: 'LT'
+      });
+    });
+    $(function () {
+      $('#timePickerOut').datetimepicker({
+        format: 'LT'
+      });
+    });
+
+  </script>
+</body>
+
+</html>
