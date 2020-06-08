@@ -29,7 +29,9 @@ $('#int').click(function () {
 });
 
 $('#bthorario').click(function () {
-    alert("dfkj");
+    $('#div-horario').show(1000);
+    $('#volver').show(1000);
+    $('#menu1').hide(1000);
 });
 
 $('#btgrupos').click(function () {
@@ -65,6 +67,7 @@ $('#deleteDiseño').click(function () {
 
 $('#btVolver').click(function () {
     $('.Spomodoro').hide(1000);
+    $('#div-horario').hide(1000);
     $('#menu1').show(1000);
     $('#volver').hide(1000);
     $('#Grupos').hide(1000);

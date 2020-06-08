@@ -23,6 +23,18 @@ $('.cell').click(function () {
 function openDivNuevoEvento() {
   $('#div-nuevoEvento').slideToggle( "slow")
 }
+
+$(function () {
+  $('#timePickerIn').datetimepicker({
+    format: 'LT'
+  });
+});
+
+$(function () {
+  $('#timePickerOut').datetimepicker({
+    format: 'LT'
+  });
+});
 /*  fin eventos de click  */
 
 
