@@ -1,5 +1,6 @@
 
 
+
 $('#Cuenta').click(function () {
     $('#login').hide(1000);
     $('#estudiante').show(1000);
@@ -19,7 +20,7 @@ $('#Ingresar').click(function () {
 
 $('#cerrar').click(function () {
     $('#fondo').show(1000);
-    $('#menu1').hide(1000);
+    $('#menu').hide(1000);
 });
 
 
@@ -48,10 +49,25 @@ $('#btsnack').click(function () {
 
 });
 
+
+
+$('#infoDiseño').click(function () {
+
+});
+
+$('#addDiseño').click(function () {
+
+});
+$('#deleteDiseño').click(function () {
+
+});
+
+
 $('#btVolver').click(function () {
     $('.Spomodoro').hide(1000);
     $('#menu1').show(1000);
     $('#volver').hide(1000);
+    $('#Grupos').hide(1000);
 });
 
 $('#buscar').click(function () {
@@ -61,7 +77,9 @@ $('#buscar').click(function () {
         swal("Error", "Digita o selecciona", "error")
     } else {
         if (inp != '') {
-
+            $('#datosM').hide(1000);
+            $('#Consultas').append($('#in1'));
+            $('#Consultas').show(1000);
         }
 
     }
@@ -91,14 +109,13 @@ $('#Crear').click(function () {
 });
 
 $('#crearGrupo').click(function () {
-
     swal("Muy bien!", "Has creado una grupo de estudio!", "success");
 });
 
 
 function ConsultasGrupos(nombre) {
     for (let i = 1; i < 13; i++) {
-    
+
     }
 
 }
