@@ -89,7 +89,9 @@ let baseDeDatos = [
     let total = 0;
     let final = 0;
     let $final =document.querySelector('#final');
+    let $finalmodal =document.querySelector('#finalmodal');
     let $pedido = document.querySelector('#carrito');
+    let $modalpedido = document.querySelector('#modalpedido');
     let $total = document.querySelector('#total');
 
     function renderItems () {
@@ -138,7 +140,7 @@ let baseDeDatos = [
         calcularTotal();
         calcularTotalFinal();
         renderizarCarrito();
-    
+        renderizarModal();
     }
 
     function renderizarCarrito () {
@@ -165,6 +167,25 @@ let baseDeDatos = [
             // Mezclamos nodos
             miNodo.appendChild(miBoton);
             $pedido.appendChild(miNodo);
+        })
+    }
+
+    function renderizarModal () {
+        $modalpedido.textContent = '';
+        let carritoSinDuplicados = [...new Set(pedido)];
+        carritoSinDuplicados.forEach(function (item, indice) {
+            let miItem = baseDeDatos.filter(function(itemBaseDatos) {
+                return itemBaseDatos['id'] == item;
+            });
+            let numeroUnidadesItem = pedido.reduce(function(total, itemId) {
+                return itemId === item ? total += 1 : total;
+            }, 0);
+            // Creamos el nodo del item del carrito
+            let miNodo = document.createElement('li');
+            miNodo.classList.add('list-group-item', 'list-group-item-info', 'border', 'border-primary','text-right', 'mx-2');
+            miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0]['nombre']} - ${miItem[0]['precio']}$`;
+            // Mezclamos nodos
+            $modalpedido.appendChild(miNodo);
         })
     }
 
@@ -196,6 +217,7 @@ let baseDeDatos = [
         final=0;
         final=total+1500;
         $final.textContent = final.toFixed(0);
+        $finalmodal.textContent = final.toFixed(0);
     }
     renderItems();
 
