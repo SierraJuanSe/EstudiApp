@@ -1,10 +1,5 @@
-
-
 var Ngrupos = 11;
 var aux = 12;
-
-
-
 
 $('#Cuenta').click(function () {
     $('#login').hide(1000);
@@ -18,9 +13,6 @@ $('#Ingresar').click(function () {
     $('#menu1').show(1000);
 
 });
-
-
-
 
 
 $('#cerrar').click(function () {
@@ -42,7 +34,6 @@ $('#btgrupos').click(function () {
     $('#volver').show(1000);
     $('#crearC').show(1000);
     $('#menu1').hide(1000);
-    // console.log($('#DiseñoWeb').attr('id'));
     Permisos();
 });
 
@@ -148,12 +139,26 @@ $('#buscar').click(function () {
 
 
 
-var sum = 0, d = 0, c = 12;
+var sum = 0, d = 0, c = 11;
 function pintargrupos(nom, salon, des, dia, ini, fin) {
     text = '';
+    var modal = '';
     sum = sum + 1;
     aux = aux + 1;
+    c = c + 1;
     var id = nom.replace(/ /g, "");
+
+    modal =
+        '<div class="modal fade" id="modalg' + c + '" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+        '<div class="modal-dialog"><div class="modal-content"><div class="modal-header">' +
+        '<h5 class="modal-title" id="exampleModalLabel">' + nom + '</h5>' +
+        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '<span aria-hidden="true">&times;</span> </button> </div><div class="modal-body">' + des + '</div> <div class="modal-footer">' +
+        '<button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>' +
+        '</div> </div> </div> </div>';
+
+    $('#modals-grupos').append(modal);
+
 
     text = '<div class="col"  id="' + id + '" >' +
         '<div  class="card border-info mb-3" style = "max-width: 18rem;" >' +
@@ -161,14 +166,47 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
         '<div class="card-body text-info">' +
         '<h5 class="card-title">' + dia + ':' + ini + '-' + fin + '</h5>' +
         '<p id="incr' + c + '" class="card-text">Inscribete</p>' + '<div class="row">' +
-        '<div class="col hov" id="infoDiseño" data-toggle="modal" data-target="#modalDiseño">' +
+        '<div class="col hov" data-toggle="modal" data-target="#modalg' + c + '"  >' +
         '<span class="material-icons">' + 'info' + '</span>' + '</div>' + '<div class="col hov" id="chatdiseño">' +
-        '<span class="material-icons">' + 'chat' + '</span>' + '</div>' + '<div class="col hov" id="addDiseño">' +
-        '<span class="material-icons">' + 'add' + '</span>' + '</div>' + '<div class="col hov" id="deleteDiseño">' +
-        '<span class="material-icons">' + 'delete' + '</span>' + '</div>' + '</div>' + '</div>' + '</div >' + '</div >';
-    console.log(d);
-
+        '<span id="schat' + aux + '" class="material-icons">' + 'chat' + '</span>' + '</div>' + '<div class="col hov" id="addDiseño">' +
+        '<span id="sadd' + aux + '" class="material-icons">' + 'add' + '</span>' + '</div>' + '<div class="col hov" id="deleteDiseño">' +
+        '<span id="delete' + aux + '" class="material-icons">' + 'delete' + '</span>' + '</div>' + '</div>' + '</div>' + '</div >' + '</div>';
     $('#g' + d).append(text);
+
+    $('#delete' + aux).css("display", "none");
+    $('#schat' + aux).css("display", "none");
+    $('#sadd' + aux).click(function () {
+        swal("¡Muy bien!", "Te has incrito a un grupo de estudio ", "success");
+        $('#incr' + c).empty();
+        $('#incr' + c).append('Estas inscrito');
+        $('#sadd' + aux).css("display", "none");
+        $('#delete' + aux).css("display", "inline");
+        $('#schat' + aux).css("display", "inline");
+    });
+
+    $('#delete' + aux).click(function () {
+
+
+        swal("¿Estas seguro?", "Al salir de un grupo no ppuedes ir a las reuniones", "warning", {
+            buttons: ["Cancelar", "Estoy seguro"]
+        })
+
+            .then((value) => {
+                if (value == true) {
+                    swal("Exito", "Has salido de un grupo de estudio", "success");
+                    $('#incr' + c).empty();
+                    $('#incr' + c).append('Inscribete');
+                    $('#sadd' + aux).css("display", "inline");
+                    $('#delete' + aux).css("display", "none");
+                    $('#schat' + aux).css("display", "none");
+                }
+            });
+    });
+
+    $('#schat' + aux).click(function () {
+
+    });
+
     Ngrupos = Ngrupos + 1;
     if (sum % 4 == 0) {
         d++;
@@ -180,11 +218,10 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
 }
 
 function Permisos() {
-    // for (let i = 0; i < Ngrupos; i++) {
-    //     console.log('dd'+
-    //         document.getElementById('incr'+i).textContent
-    //         );
-    // }
+    for (let i = 0; i < Ngrupos+1; i++) {
+        var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
+        var inc = document.getElementById('incr' + i).textContent;    
+    }
 }
 
 var sum1 = 0, d1 = 0, c1 = 12;
@@ -195,7 +232,7 @@ function Consultas(cons) {
         $('#Consultas').hide(1000);
         $('#datosM').show(1000);
     } else if (cons == 'Inscritos') {
-        for (let i = 0; i < Ngrupos+1; i++) {
+        for (let i = 0; i < Ngrupos + 1; i++) {
 
             var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
             var inc = document.getElementById('incr' + i).textContent;
@@ -223,18 +260,18 @@ function Consultas(cons) {
 
 
     } else if (cons == 'No Inscritos') {
-        for (let i = 0; i < Ngrupos; i++) {
+        for (let i = 0; i < Ngrupos + 1; i++) {
 
             var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
             var inc = document.getElementById('incr' + i).textContent;
+            console.log(carta + inc);
             if (inc == 'Inscribete') {
                 sum1 = sum1 + 1;
                 if (1 == sum1) {
                     $('#Consultas').append('<div class="row" id="gu0"></div>');
                 }
-                // console.log(carta + inc);
+
                 var te = $('#' + carta).html();
-                // console.log(te);
                 $('#gu' + d1).append('<div class="col">' + te + '</div>');
                 if (sum1 % 4 == 0) {
                     d1 = d1 + 1;
@@ -250,13 +287,13 @@ function Consultas(cons) {
 
 
     } else {
-        var g=0;
+        var g = 0;
         for (let i = 0; i < Ngrupos + 1; i++) {
             var carta = document.getElementById('ng' + (i + 1)).parentNode.parentNode.id;
             var inc = document.getElementById('ng' + (i + 1)).textContent;
             // console.log(carta);
             // x = new Boolean(false);
-        
+
             if (inc == cons) {
                 var te = $('#' + carta).html();
                 $('#Consultas').append('<div class="col">' + te + '</div>');
@@ -265,11 +302,11 @@ function Consultas(cons) {
                 $('#Consultas').show(1000);
                 $('#inputbuscar').val('');
                 // x=true;
-                g=1;
-            } 
+                g = 1;
+            }
         }
-    
-        if (g==0) { 
+
+        if (g == 0) {
             swal("No existe", "El grupo que tratas de buscar no exite", "error");
             $('#inputbuscar').val('');
         }
