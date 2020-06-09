@@ -1,19 +1,22 @@
 var s=0;
 var m=25;
 
+
 function cronometrar(){
     escribir();
     id = setInterval(escribir,1000);
-    
 }
-function escribir(){
-    s--;
-    if (s<0){m--;s=59;}
-    var minutero = document.getElementById("minutero")
-    var segundero = document.getElementById("segundero")
-    minutero.innerHTML = '<h1 style="font-size:150px">'+m+':'+s+'</h1>';
-    if(s<10){minutero.innerHTML = '<h1 style="font-size:150px">'+m+':0'+s+'</h1>';}else{minutero.innerHTML = '<h1 style="font-size:150px">'+m+':'+s+'</h1>';}
+function escribir(){ 
+    if(m>=0){
+        s--;
+        if (s<0){m--;s=59;}
+        var minutero = document.getElementById("minutero")
+        var segundero = document.getElementById("segundero")
+        minutero.innerHTML = '<h1 style="font-size:150px">'+m+':'+s+'</h1>';
+        if(s<10){minutero.innerHTML = '<h1 style="font-size:150px">'+m+':0'+s+'</h1>';}else{minutero.innerHTML = '<h1 style="font-size:150px">'+m+':'+s+'</h1>';}
+    }
 }
+
 function parar(){
     clearInterval(id);
 }
@@ -89,6 +92,7 @@ $('#Btn_descanso').click(function(e){
     var replay;
     replay = document.getElementById("Btn_replay");
     replay.style = 'width:200px; height:75px'
+
 });
 
 $('#Btn_descanso2').click(function(e){
