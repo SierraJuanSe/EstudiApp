@@ -20,6 +20,12 @@
     color: #333;
 }
 
+.cro{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: auto;
+}
+
 #menu1{
 
  background-color: #EAEAEA;
