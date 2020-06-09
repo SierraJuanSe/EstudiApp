@@ -21,12 +21,8 @@ $('#cerrar').click(function () {
 });
 
 
-$('#int').click(function () {
-    alert("ajaa");
-});
 
 $('#bthorario').click(function () {
-    alert("dfkj");
 });
 
 $('#btgrupos').click(function () {
@@ -34,7 +30,9 @@ $('#btgrupos').click(function () {
     $('#volver').show(1000);
     $('#crearC').show(1000);
     $('#menu1').hide(1000);
+    botonesDatosQuemados();
     Permisos();
+
 });
 
 $('#btpom').click(function () {
@@ -48,32 +46,6 @@ $('#btsnack').click(function () {
 });
 
 
-
-$('#infoDiseño').click(function () {
-
-});
-
-$('#addDiseño').click(function () {
-    swal("¡Muy bien!", "Te has incrito a un grupo de estudio ", "success");
-    $('#incr0').empty();
-    $('#incr0').append('Estas inscrito');
-});
-
-$('#deleteDiseño').click(function () {
-
-
-    swal("¿Estas seguro?", "Al salir de un grupo no ppuedes ir a las reuniones", "warning", {
-        buttons: ["Cancelar", "Estoy seguro"]
-    })
-
-        .then((value) => {
-            if (value == true) {
-                swal("Exito", "Has salido de un grupo de estudio", "success");
-                $('#in1').remove();
-            }
-        });
-
-});
 
 
 $('#btVolver').click(function () {
@@ -115,13 +87,20 @@ $('#crearGrupo').click(function () {
     var fin = $('#horafin').val();
     swal("Muy bien!", "Has creado una grupo de estudio!", "success");
     pintargrupos(nom, salon, des, dia, ini, fin);
+    $('#nomg').val('');
+    $('#salong').val('');
+    $('#descg').val('');
+
+    $('#horain').val('');
+    $('#horafin').val('');
+
 
 });
 
 
 
 $('#buscar').click(function () {
-    $('#Consultas').empty();
+  
     var inp = $('#inputbuscar').val();
     var drop = $('#dropc').find('option:selected').text();
     if (inp == '' && drop == 'Selecciona...') {
@@ -160,7 +139,7 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
     $('#modals-grupos').append(modal);
 
 
-    text = '<div class="col"  id="' + id + '" >' +
+    text = '<div class="col-6 col-sm-3"  id="' + id + '" >' +
         '<div  class="card border-info mb-3" style = "max-width: 18rem;" >' +
         '<div id="ng' + aux + '" class="card-header">' + nom + '</div>' +
         '<div class="card-body text-info">' +
@@ -171,7 +150,8 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
         '<span id="schat' + aux + '" class="material-icons">' + 'chat' + '</span>' + '</div>' + '<div class="col hov" id="addDiseño">' +
         '<span id="sadd' + aux + '" class="material-icons">' + 'add' + '</span>' + '</div>' + '<div class="col hov" id="deleteDiseño">' +
         '<span id="delete' + aux + '" class="material-icons">' + 'delete' + '</span>' + '</div>' + '</div>' + '</div>' + '</div >' + '</div>';
-    $('#g' + d).append(text);
+    // $('#g' + d).append(text);
+    $('#n').append(text);
 
     $('#delete' + aux).css("display", "none");
     $('#schat' + aux).css("display", "none");
@@ -199,6 +179,7 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
                     $('#sadd' + aux).css("display", "inline");
                     $('#delete' + aux).css("display", "none");
                     $('#schat' + aux).css("display", "none");
+
                 }
             });
     });
@@ -208,55 +189,50 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
     });
 
     Ngrupos = Ngrupos + 1;
-    if (sum % 4 == 0) {
-        d++;
-        $('#datosM').append(' <div class="row" id="g' + d + '">' + '</div>');
-    }
-
-
+    // if (sum % 4 == 0) {
+    //     d++;
+    //     $('#datosM').append(' <div class="row" id="g' + d + '">' + '</div>');
+    // }
 
 }
 
-function Permisos() {
-    for (let i = 0; i < Ngrupos+1; i++) {
-        var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
-        var inc = document.getElementById('incr' + i).textContent;    
-    }
-}
+
 
 var sum1 = 0, d1 = 0, c1 = 12;
 function Consultas(cons) {
     d1 = 0;
     sum1 = 0;
     if (cons == 'Todos') {
-        $('#Consultas').hide(1000);
-        $('#datosM').show(1000);
+for (let i = 0; i < Ngrupos+1; i++) {
+    var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
+    $('#'+carta).css("display", "inline");
+}
     } else if (cons == 'Inscritos') {
         for (let i = 0; i < Ngrupos + 1; i++) {
 
             var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
             var inc = document.getElementById('incr' + i).textContent;
             console.log(carta + inc);
-            if (inc == 'Estas inscrito') {
-                sum1 = sum1 + 1;
-                if (1 == sum1) {
-                    $('#Consultas').append('<div class="row" id="gu0"></div>');
-                }
-                var te = $('#' + carta).html();
-                // console.log(te);
-                // console.log(carta + inc);
-                $('#gu' + d1).append('<div class="col">' + te + '</div>');
-                if (sum1 % 4 == 0) {
-                    d1 = d1 + 1;
-                    $('#Consultas').append('<div class="row" id="gu' + d1 + '"></div>');
-                }
+            if (inc != 'Estas inscrito') {
+                // sum1 = sum1 + 1;
+                // if (1 == sum1) {
+                //     $('#Consultas').append('<div class="row" id="gu0"></div>');
+                // }
+                // var te = $('#' + carta).html();
 
+                // $('#gu' + d1).append('<div class="col">' + te + '</div>');
+                // if (sum1 % 4 == 0) {
+                //     d1 = d1 + 1;
+                //     $('#Consultas').append('<div class="row" id="gu' + d1 + '"></div>');
+                // }
+                $('#'+carta).css("display", "none");
+                
             }
 
         }
-        $('#datosM').hide(1000);
+        // $('#datosM').hide(1000);
 
-        $('#Consultas').show(1000);
+        // $('#Consultas').show(1000);
 
 
     } else if (cons == 'No Inscritos') {
@@ -265,26 +241,26 @@ function Consultas(cons) {
             var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
             var inc = document.getElementById('incr' + i).textContent;
             console.log(carta + inc);
-            if (inc == 'Inscribete') {
-                sum1 = sum1 + 1;
-                if (1 == sum1) {
-                    $('#Consultas').append('<div class="row" id="gu0"></div>');
-                }
+            if (inc != 'Inscribete') {
+        //         sum1 = sum1 + 1;
+        //         if (1 == sum1) {
+        //             $('#Consultas').append('<div class="row" id="gu0"></div>');
+        //         }
 
-                var te = $('#' + carta).html();
-                $('#gu' + d1).append('<div class="col">' + te + '</div>');
-                if (sum1 % 4 == 0) {
-                    d1 = d1 + 1;
-                    $('#Consultas').append('<div class="row" id="gu' + d1 + '"></div>');
-                }
+        //         var te = $('#' + carta).html();
+        //         $('#gu' + d1).append('<div class="col">' + te + '</div>');
+        //         if (sum1 % 4 == 0) {
+        //             d1 = d1 + 1;
+        //             $('#Consultas').append('<div class="row" id="gu' + d1 + '"></div>');
+        //         }
 
             }
 
         }
-        $('#datosM').hide(1000);
+        // $('#datosM').hide(1000);
 
-        $('#Consultas').show(1000);
-
+        // $('#Consultas').show(1000);
+        $('#'+carta).css("display", "none");
 
     } else {
         var g = 0;
@@ -313,4 +289,59 @@ function Consultas(cons) {
 
     }
 
+}
+
+
+function Permisos() {
+    for (let i = 0; i <=11; i++) {
+        var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
+        var inc = document.getElementById('incr' + i).textContent;
+        if (inc=='Inscribete') {
+            $('#delete' + (i+1)).css("display", "none");
+            $('#schat' + (i+1)).css("display", "none");
+        } else {
+            $('#sadd' + (i+1)).css("display", "none");
+            
+        }
+
+    }
+}
+
+
+function botonesDatosQuemados() {
+
+    for (let i = 1; i <= 12; i++) {
+        $('#schat' + i).click(function () {
+        });
+
+        $('#sadd' + i).click(function () {
+            swal("¡Muy bien!", "Te has incrito a un grupo de estudio ", "success");
+            $('#incr' + (i-1)).empty();
+            $('#incr' + (i-1)).append('Estas inscrito');
+            $('#sadd' + i).css("display", "none");
+            $('#delete' + i).css("display", "inline");
+            $('#schat' + i).css("display", "inline");
+        });
+
+        $('#delete' + i).click(function () {
+           
+        swal("¿Estas seguro?", "Al salir de un grupo no ppuedes ir a las reuniones", "warning", {
+            buttons: ["Cancelar", "Estoy seguro"]
+        })
+
+            .then((value) => {
+                if (value == true) {
+                    swal("Exito", "Has salido de un grupo de estudio", "success");
+                    $('#incr' + (i-1)).empty();
+                    $('#incr' + (i-1)).append('Inscribete');
+                    $('#sadd' + i).css("display", "inline");
+                    $('#delete' + i).css("display", "none");
+                    $('#schat' + i).css("display", "none");
+
+                }
+            });
+        });
+
+
+    }
 }
