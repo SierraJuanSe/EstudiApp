@@ -45,7 +45,9 @@ $('#btpom').click(function () {
 });
 
 $('#btsnack').click(function () {
-
+    $('#snacks').show(1000);
+    $('#volver').show(1000);
+    $('#menu1').hide(1000);
 });
 
 
@@ -57,6 +59,7 @@ $('#btVolver').click(function () {
     $('#menu1').show(1000);
     $('#volver').hide(1000);
     $('#Grupos').hide(1000);
+    $('#snacks').hide(1000);
 });
 
 

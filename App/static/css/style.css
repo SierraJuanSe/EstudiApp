@@ -20,6 +20,10 @@
     color: #333;
 }
 
+.ped{
+    position: fixed;
+}
+
 .cro{
     overflow-x: hidden;
     overflow-y: hidden;
