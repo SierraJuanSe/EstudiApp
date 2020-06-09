@@ -100,7 +100,7 @@ $('#crearGrupo').click(function () {
 
 
 $('#buscar').click(function () {
-  
+
     var inp = $('#inputbuscar').val();
     var drop = $('#dropc').find('option:selected').text();
     if (inp == '' && drop == 'Selecciona...') {
@@ -189,10 +189,7 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
     });
 
     Ngrupos = Ngrupos + 1;
-    // if (sum % 4 == 0) {
-    //     d++;
-    //     $('#datosM').append(' <div class="row" id="g' + d + '">' + '</div>');
-    // }
+
 
 }
 
@@ -200,13 +197,19 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
 
 var sum1 = 0, d1 = 0, c1 = 12;
 function Consultas(cons) {
+    for (let i = 0; i < Ngrupos + 1; i++) {
+        var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
+        $('#' + carta).css("display", "inline");
+    }
+
+
     d1 = 0;
     sum1 = 0;
     if (cons == 'Todos') {
-for (let i = 0; i < Ngrupos+1; i++) {
-    var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
-    $('#'+carta).css("display", "inline");
-}
+        for (let i = 0; i < Ngrupos + 1; i++) {
+            var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
+            $('#' + carta).css("display", "inline");
+        }
     } else if (cons == 'Inscritos') {
         for (let i = 0; i < Ngrupos + 1; i++) {
 
@@ -214,25 +217,13 @@ for (let i = 0; i < Ngrupos+1; i++) {
             var inc = document.getElementById('incr' + i).textContent;
             console.log(carta + inc);
             if (inc != 'Estas inscrito') {
-                // sum1 = sum1 + 1;
-                // if (1 == sum1) {
-                //     $('#Consultas').append('<div class="row" id="gu0"></div>');
-                // }
-                // var te = $('#' + carta).html();
 
-                // $('#gu' + d1).append('<div class="col">' + te + '</div>');
-                // if (sum1 % 4 == 0) {
-                //     d1 = d1 + 1;
-                //     $('#Consultas').append('<div class="row" id="gu' + d1 + '"></div>');
-                // }
-                $('#'+carta).css("display", "none");
-                
+                $('#' + carta).css("display", "none");
+
             }
 
         }
-        // $('#datosM').hide(1000);
 
-        // $('#Consultas').show(1000);
 
 
     } else if (cons == 'No Inscritos') {
@@ -242,49 +233,35 @@ for (let i = 0; i < Ngrupos+1; i++) {
             var inc = document.getElementById('incr' + i).textContent;
             console.log(carta + inc);
             if (inc != 'Inscribete') {
-        //         sum1 = sum1 + 1;
-        //         if (1 == sum1) {
-        //             $('#Consultas').append('<div class="row" id="gu0"></div>');
-        //         }
 
-        //         var te = $('#' + carta).html();
-        //         $('#gu' + d1).append('<div class="col">' + te + '</div>');
-        //         if (sum1 % 4 == 0) {
-        //             d1 = d1 + 1;
-        //             $('#Consultas').append('<div class="row" id="gu' + d1 + '"></div>');
-        //         }
-
+                $('#' + carta).css("display", "none");
             }
 
         }
-        // $('#datosM').hide(1000);
 
-        // $('#Consultas').show(1000);
-        $('#'+carta).css("display", "none");
+
 
     } else {
-        var g = 0;
+        var g = 1;
         for (let i = 0; i < Ngrupos + 1; i++) {
             var carta = document.getElementById('ng' + (i + 1)).parentNode.parentNode.id;
             var inc = document.getElementById('ng' + (i + 1)).textContent;
-            // console.log(carta);
-            // x = new Boolean(false);
-
-            if (inc == cons) {
-                var te = $('#' + carta).html();
-                $('#Consultas').append('<div class="col">' + te + '</div>');
+            var car;
+              console.log(carta+inc);
+            if (inc != cons) {
+               $('#' + carta).css("display", "none");
+            }else{
+                car=carta;
+                g=0;
+                $('#' + carta).css("display", "inline");
                 $('#inputbuscar').val('');
-                $('#datosM').hide(1000);
-                $('#Consultas').show(1000);
-                $('#inputbuscar').val('');
-                // x=true;
-                g = 1;
             }
         }
 
-        if (g == 0) {
+        if (g == 1) {
             swal("No existe", "El grupo que tratas de buscar no exite", "error");
             $('#inputbuscar').val('');
+            Consultas('Todos');
         }
 
     }
@@ -293,15 +270,15 @@ for (let i = 0; i < Ngrupos+1; i++) {
 
 
 function Permisos() {
-    for (let i = 0; i <=11; i++) {
+    for (let i = 0; i <= 11; i++) {
         var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
         var inc = document.getElementById('incr' + i).textContent;
-        if (inc=='Inscribete') {
-            $('#delete' + (i+1)).css("display", "none");
-            $('#schat' + (i+1)).css("display", "none");
+        if (inc == 'Inscribete') {
+            $('#delete' + (i + 1)).css("display", "none");
+            $('#schat' + (i + 1)).css("display", "none");
         } else {
-            $('#sadd' + (i+1)).css("display", "none");
-            
+            $('#sadd' + (i + 1)).css("display", "none");
+
         }
 
     }
@@ -316,30 +293,30 @@ function botonesDatosQuemados() {
 
         $('#sadd' + i).click(function () {
             swal("¡Muy bien!", "Te has incrito a un grupo de estudio ", "success");
-            $('#incr' + (i-1)).empty();
-            $('#incr' + (i-1)).append('Estas inscrito');
+            $('#incr' + (i - 1)).empty();
+            $('#incr' + (i - 1)).append('Estas inscrito');
             $('#sadd' + i).css("display", "none");
             $('#delete' + i).css("display", "inline");
             $('#schat' + i).css("display", "inline");
         });
 
         $('#delete' + i).click(function () {
-           
-        swal("¿Estas seguro?", "Al salir de un grupo no ppuedes ir a las reuniones", "warning", {
-            buttons: ["Cancelar", "Estoy seguro"]
-        })
 
-            .then((value) => {
-                if (value == true) {
-                    swal("Exito", "Has salido de un grupo de estudio", "success");
-                    $('#incr' + (i-1)).empty();
-                    $('#incr' + (i-1)).append('Inscribete');
-                    $('#sadd' + i).css("display", "inline");
-                    $('#delete' + i).css("display", "none");
-                    $('#schat' + i).css("display", "none");
+            swal("¿Estas seguro?", "Al salir de un grupo no ppuedes ir a las reuniones", "warning", {
+                buttons: ["Cancelar", "Estoy seguro"]
+            })
 
-                }
-            });
+                .then((value) => {
+                    if (value == true) {
+                        swal("Exito", "Has salido de un grupo de estudio", "success");
+                        $('#incr' + (i - 1)).empty();
+                        $('#incr' + (i - 1)).append('Inscribete');
+                        $('#sadd' + i).css("display", "inline");
+                        $('#delete' + i).css("display", "none");
+                        $('#schat' + i).css("display", "none");
+
+                    }
+                });
         });
 
 
