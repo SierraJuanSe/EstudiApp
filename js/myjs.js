@@ -1,3 +1,4 @@
+var salon=$('#Salon').val();
 let baseDeDatos = [
     {
         id: 1,
@@ -84,6 +85,7 @@ let baseDeDatos = [
         imagen: 'img/agua.jpg'
     }
 ]
+    
     let $items = document.querySelector('#items');
     let pedido = [];
     let total = 0;
@@ -221,3 +223,8 @@ let baseDeDatos = [
     }
     renderItems();
 
+
+$( '#Btn_ModalPedido' ).click(function(){
+   $("#salonmodal").empty();
+   $("#salonmodal").append('<p class="text-right"><b>Salon : '+$('#Salon').val()+' </b></p>');
+});
