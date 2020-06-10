@@ -1,0 +1,16 @@
+#div-tablaHorario{
+  overflow-x: scroll;
+  margin-top: 10px;
+}
+
+#div-nuevoEvento{
+  display: none;
+}
+
+body{
+  background-color: #EAEAEA;
+}
+
+td{
+  height: 60px;
+}
