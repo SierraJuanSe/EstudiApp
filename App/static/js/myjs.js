@@ -100,7 +100,7 @@ let baseDeDatos = [
         for (let info of baseDeDatos) {
             // Estructura
             let miNodo = document.createElement('div');
-            miNodo.classList.add('card','col-sm-4','mb-2','border','border-success','rounded');
+            miNodo.classList.add('card','col-sm-4','mb-2','border','border-primary','rounded');
             // Body
             let miNodoCardBody = document.createElement('div');
             miNodoCardBody.classList.add('card-body');

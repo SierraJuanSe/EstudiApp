@@ -109,9 +109,6 @@ main, #logBody{
 #pedido{
     position: fixed;
     top: 130px;
-    right: 10px;
+    right: 5px;
     overflow-y:scroll;
 }
-
-
-
