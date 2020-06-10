@@ -5,7 +5,7 @@
 
         </title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-       
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     </head>
     <body>
@@ -22,17 +22,62 @@
                     <ul id="carrito" class="list-group" class="rounded"  ></ul>
                     <hr>
                     <!-- Precio total -->
+                    <input type="text" class="form-control" placeholder="Salon" id="Salon">
                     <p class="text-right"><b>Valor Productos: </b><span id="total"></span>&dollar;</p>
                     <p class="text-right"><b>Valor Domicilio: </b> 1500<span id="domicilio"></span>&dollar;</p>
                     <p class="text-right"><b>Valor a Pagar: </b><span id="final"></span>&dollar;</p>
-                    <button aling='center' type="button" class="btn btn-outline-success">Pedir</button>
-                
+                    
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm">
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                        <div class="col-sm">
+                          <button type="button" id="Btn_ModalPedido" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                           Pedir
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                 </aside>
             </div>
         </div>
 
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                    <ul id="modalpedido" class="list-group" class="rounded"  ></ul>
+                    <p class="text-right"><b>Valor Domicilio: </b> 1500<span id="domicilio"></span>&dollar;</p>
+                    <p class="text-right"><b>Valor a Pagar: </b><span id="finalmodal"></span>&dollar;</p>
+                    <div id="salonmodal">
+
+                    </div>    
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Hacer pedido</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
         
+
+
 
         <script src="js/myjs.js" charset="utf-8"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
