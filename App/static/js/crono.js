@@ -1,5 +1,7 @@
 var s = 0;
 var m = 25;
+var maux=25;
+var saux=0;
 
 function cronometrar() {
     escribir();
@@ -7,16 +9,13 @@ function cronometrar() {
 }
 
 function escribir() {
-    while (s >= 0) {
-
-
-        s--;
-        if (s < 0) { m--; s = 59; }
-        var minutero = document.getElementById("minutero")
-        var segundero = document.getElementById("segundero")
-        minutero.innerHTML = '<h1 style="font-size:150px">' + m + ':' + s + '</h1>';
-        if (s < 10) { minutero.innerHTML = '<h1 style="font-size:150px">' + m + ':0' + s + '</h1>'; } else { minutero.innerHTML = '<h1 style="font-size:150px">' + m + ':' + s + '</h1>'; }
-    }
+    s--;
+    if (s < 0) { m--; s = 59; }
+    var minutero = document.getElementById("minutero")
+    var segundero = document.getElementById("segundero")
+    minutero.innerHTML = '<h1 style="font-size:150px">' + m + ':' + s + '</h1>';
+    if(m<0){minutero.innerHTML = '<h1 style="font-size:150px">' + '00' + ':00' + '</h1>'; } else { minutero.innerHTML = '<h1 style="font-size:150px">' + m + ':' + s + '</h1>'; 
+    if (s < 10) { minutero.innerHTML = '<h1 style="font-size:150px">' + m + ':0' + s + '</h1>'; } else { minutero.innerHTML = '<h1 style="font-size:150px">' + m + ':' + s + '</h1>';}}    
 }
 function parar() {
     clearInterval(id);
@@ -24,7 +23,7 @@ function parar() {
 
 function reiniciar() {
     clearInterval(id);
-    m = 25; s = 1;
+    m = maux; s = saux;
     escribir();
     $("#Btn_play").show(250);
 }
@@ -72,6 +71,8 @@ $('#Btn_replay').click(function (e) {
 $('#Btn_pomodoro').click(function (e) {
     clearInterval(id);
     m = 25; s = 1;
+    maux=m;
+    saux=s;
     escribir();
     $("#Btn_play").show(250);
     var pausa;
@@ -85,6 +86,8 @@ $('#Btn_pomodoro').click(function (e) {
 $('#Btn_descanso').click(function (e) {
     clearInterval(id);
     m = 5; s = 1;
+    maux=m;
+    saux=s;
     escribir();
     $("#Btn_play").show(250);
     var pausa;
@@ -98,6 +101,8 @@ $('#Btn_descanso').click(function (e) {
 $('#Btn_descanso2').click(function (e) {
     clearInterval(id);
     m = 10; s = 1;
+    maux=m;
+    saux=s;
     escribir();
     $("#Btn_play").show(250);
     var pausa;
