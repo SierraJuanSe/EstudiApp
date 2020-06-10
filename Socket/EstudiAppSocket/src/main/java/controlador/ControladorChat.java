@@ -25,14 +25,13 @@ public class ControladorChat extends WebSocketServer{
 
 	@Override
 	public void onClose(WebSocket conn, int code, String reason, boolean remote) {
-		// TODO Auto-generated method stub
-		
+		this.clientes.remove(conn.getRemoteSocketAddress().toString());
 	}
 
 	@Override
 	public void onMessage(WebSocket conn, String message) {
 		// TODO Auto-generated method stub
-		
+		conn.send(message);
 	}
 
 	@Override
