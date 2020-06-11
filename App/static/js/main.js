@@ -108,7 +108,7 @@ $('#btgrupos').click(function () {
     $('#volver').show(1000);
     $('#crearC').show(1000);
     $('#menu1').hide(1000);
-    botonesDatosQuemados();
+    botonesDatosQuemados(0);
     Permisos();
 
 });
@@ -233,7 +233,6 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
 
     $('#modals-grupos').append(modal);
 
-
     text = '<div class="col-6 col-sm-3"  id="' + id + '" >' +
         '<div  class="card border-info mb-3" style = "max-width: 18rem;" >' +
         '<div id="ng' + aux + '" class="card-header">' + nom + '</div>' +
@@ -245,47 +244,23 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
         '<span id="schat' + aux + '" class="material-icons">' + 'chat' + '</span>' + '</div>' + '<div class="col hov" id="addDiseño">' +
         '<span id="sadd' + aux + '" class="material-icons">' + 'add' + '</span>' + '</div>' + '<div class="col hov" id="deleteDiseño">' +
         '<span id="delete' + aux + '" class="material-icons">' + 'delete' + '</span>' + '</div>' + '</div>' + '</div>' + '</div >' + '</div>';
-    // $('#g' + d).append(text);
     $('#n').append(text);
 
     $('#delete' + aux).css("display", "none");
     $('#schat' + aux).css("display", "none");
-    $('#sadd' + aux).click(function () {
-        swal("¡Muy bien!", "Te has incrito a un grupo de estudio ", "success");
-        $('#incr' + c).empty();
-        $('#incr' + c).append('Estas inscrito');
-        $('#sadd' + aux).css("display", "none");
-        $('#delete' + aux).css("display", "inline");
-        $('#schat' + aux).css("display", "inline");
-    });
-
-    $('#delete' + aux).click(function () {
-
-
-        swal("¿Estas seguro?", "Al salir de un grupo no ppuedes ir a las reuniones", "warning", {
-            buttons: ["Cancelar", "Estoy seguro"]
-        })
-
-            .then((value) => {
-                if (value == true) {
-                    swal("Exito", "Has salido de un grupo de estudio", "success");
-                    $('#incr' + c).empty();
-                    $('#incr' + c).append('Inscribete');
-                    $('#sadd' + aux).css("display", "inline");
-                    $('#delete' + aux).css("display", "none");
-                    $('#schat' + aux).css("display", "none");
-
-                }
-            });
-    });
-
-    $('#schat' + aux).click(function () {
-
-    });
-
     Ngrupos = Ngrupos + 1;
+    botonesDatosNoQuemados(13);
+    console.log(aux);
+    console.log(c);
+    
 
+}
 
+function recorrerBT() {
+    for (let i = 0; i < Ngrupos+1; i++) {
+        
+    }
+    
 }
 
 
@@ -370,6 +345,7 @@ function Permisos() {
         var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
         var inc = document.getElementById('incr' + i).textContent;
         if (inc == 'Inscribete') {
+      
             $('#delete' + (i + 1)).css("display", "none");
             $('#schat' + (i + 1)).css("display", "none");
         } else {
@@ -381,15 +357,61 @@ function Permisos() {
 }
 
 
-function botonesDatosQuemados() {
-
-    for (let i = 1; i <= 12; i++) {
+function botonesDatosQuemados(valor) {
+    for (let i = valor; i <= Ngrupos+1; i++) {
         $('#schat' + i).click(function () {
             let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
             openChat(grupo);
             ingresocualquiera('chat'+grupo);
         });
 
+        $('#sadd' + i).click(function () {
+            swal("¡Muy bien!", "Te has incrito a un grupo de estudio ", "success");
+            $('#incr' + (i - 1)).empty();
+            $('#incr' + (i - 1)).append('Estas inscrito');
+            $('#sadd' + i).css("display", "none");
+            $('#delete' + i).css("display", "inline");
+            $('#schat' + i).css("display", "inline");
+            let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+            inscrito.push(grupo)
+        });
+
+        $('#delete' + i).click(function () {
+
+            swal("¿Estas seguro?", "Al salir de un grupo no ppuedes ir a las reuniones", "warning", {
+                buttons: ["Cancelar", "Estoy seguro"]
+            })
+
+                .then((value) => {
+                    if (value == true) {
+                        swal("Exito", "Has salido de un grupo de estudio", "success");
+                        $('#incr' + (i - 1)).empty();
+                        $('#incr' + (i - 1)).append('Inscribete');
+                        $('#sadd' + i).css("display", "inline");
+                        $('#delete' + i).css("display", "none");
+                        $('#schat' + i).css("display", "none");
+                        let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+                        inscrito.splice(inscrito.indexOf(grupo), 1)
+                        console.log(inscrito);
+                    }
+                });
+        });
+
+
+    }
+}
+
+function botonesDatosNoQuemados(valor) {
+    console.log('aca');
+    for (let i = valor; i <= Ngrupos+1; i++) {
+    
+        $('#schat' + i).click(function () {
+            let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+            openChat(grupo);
+            ingresocualquiera('chat'+grupo);
+        });
+        console.log(i);
+        console.log(i-1);
         $('#sadd' + i).click(function () {
             swal("¡Muy bien!", "Te has incrito a un grupo de estudio ", "success");
             $('#incr' + (i - 1)).empty();
