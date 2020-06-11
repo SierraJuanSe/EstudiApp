@@ -107,3 +107,14 @@ main, #logBody{
 #items{
     background-color:transparent !important;
 }
+
+#pedido{
+    position: fixed;
+    top: 130px;
+    right: 5px;
+}
+
+#contenedor-carrito{
+    max-height: 256px;
+    overflow-y: auto;
+}

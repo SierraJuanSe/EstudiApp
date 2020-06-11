@@ -1,4 +1,4 @@
-let nombre = 'juan'
+
 let chatsActivos =['chat_general']
 
 const url = 'ws://localhost:30000';
@@ -15,12 +15,13 @@ websocket.onmessage = function (mensaje) {
 websocket.onclose = function (evt) {
   info = {
     type: 'close',
-    from: nombre,
+    from: actualUsuario.nombre,
   }
+
+  websocket.send(JSON.stringify(info))
+
   console.log("--Desconectado--" + evt.data);
   websocket.close();
-  $('#tablero').hide(500);
-  $('#menu').show(500);
 };
 
 /* Funciones de click */
@@ -72,7 +73,7 @@ function getInfoMsgOut(btn) {
 
   info = {
     type: 'msg',
-    from: nombre,
+    from: actualUsuario.nombre,
     to: chat,
     msg: msg,
     time: time

@@ -69,12 +69,12 @@
             <form>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="inputEmail4">Email</label>
+                        <label for="inputEmail4">Nombre</label>
                         <input id="nombre" type="text" class="form-control" id="inputEmail4" placeholder="Nombre">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Apellido</label>
-                        <input id="apellido" type="text" class="form-control" id="inputPassword4"
+                        <input id="apellido" type="text" class="form-control" id="inputPassword4" placeholder="Apellido"
                             placeholder="Contraseña">
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                         <label for="carrerra">Carrera</label>
                         <select id="carrerra" class="form-control">
                             <option selected>Selecciona...</option>
-                            <option>Ingenieria de sistemas y Telecomunicaciones</option>
+                            <option>Ingenieria de Sistemas y Telecomunicaciones</option>
                             <option>Ingenieria Industrial</option>
                             <option>Ingenieria Ambiental</option>
                             <option>Ingenieria Electronica</option>
@@ -97,16 +97,16 @@
                         <label for="semestre">Semestre</label>
                         <select id="semestre" class="form-control">
                             <option selected>Selecciona...</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option>(1)</option>
+                            <option>(2)</option>
+                            <option>(3)</option>
+                            <option>(4)</option>
+                            <option>(5)</option>
+                            <option>(6)</option>
+                            <option>(7)</option>
+                            <option>(8)</option>
+                            <option>(9)</option>
+                            <option>(10)</option>
                         </select>
                     </div>
 
@@ -166,20 +166,7 @@
 
                 </ul>
                 <form class="form-inline my-2 my-lg-0" style="position: absolute;right: 10%;">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle  bg-info" type="button"
-                            id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="material-icons  bg-info">
-                                notifications
-                            </span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-                        </div>
-                    </div>
-
-
-
+                    
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle bg-info " type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -188,10 +175,7 @@
                             </span>
                         </button>
                         <div class="dropdown-menu  dropleft" aria-labelledby="dropdownMenuButton">
-
-                            <a class="dropdown-item" href="#">Configuración</a>
                             <a id="cerrar" class="dropdown-item" href="#">Cerrar Sesion</a>
-
                         </div>
                     </div>
                 </form>
@@ -201,7 +185,7 @@
         <div id="menu1">
             <br>
             <div class="col text-center">
-                <h2>Hola, ¿Estas listo para estudiar?</h2>
+                <h2>Hola <span id="nombreUsuario"></span>, ¿Estas listo para estudiar?</h2>
             </div>
             <br>
             <div class="container">
@@ -1105,10 +1089,10 @@
                     
                     <main id="items" class="col-sm-8 row"></main>
                     
-                    <aside class="col-sm-4 ped">
+                    <aside id="pedido" class="col-sm-4 ped">
                         <h2>Pedido</h2>
     
-                        <ul id="carrito" class="list-group" class="rounded"  > </ul>
+                        <div id="contenedor-carrito"><ul id="carrito" class="list-group" class="rounded"  > </ul></div>
                         <hr>
                         <!-- Precio total -->
                         <input type="text" class="form-control" placeholder="Salon" id="Salon">
