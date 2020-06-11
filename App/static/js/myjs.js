@@ -225,6 +225,12 @@ let baseDeDatos = [
 
 
 $( '#Btn_ModalPedido' ).click(function(){
+    if ($('#Salon').val()=='') {
+        swal("¡Ouchs!", "Por favor digita el salon", "error")
+    }else{
+
+  $('#exampleModal').modal('show');
    $("#salonmodal").empty();
    $("#salonmodal").append('<p class="text-right"><b>Salon : '+$('#Salon').val()+' </b></p>');
+    }
 });

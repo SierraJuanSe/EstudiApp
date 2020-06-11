@@ -76,6 +76,25 @@ $('#cerrar').click(function () {
     window.location.reload(true); 
 });
 
+$('#crearPedido').click(function () {
+ 
+   
+        swal("Has realizado un pedido", "En unos minutos llegaran tus productos", "success")
+        $('#contenedor-carrito').empty();
+        $('.Spomodoro').hide(1000);
+        $('#div-horario').hide(1000);
+        $('#menu1').show(1000);
+        $('#volver').hide(1000);
+        $('#Grupos').hide(1000);
+        $('#snacks').hide(1000);
+    
+  
+});
+
+$('#cancelarCuenta').click(function () {
+    $('#login').show(1000);
+    $('#estudiante').hide(1000);
+});
 
 
 $('#bthorario').click(function () {
@@ -219,7 +238,7 @@ function pintargrupos(nom, salon, des, dia, ini, fin) {
         '<div  class="card border-info mb-3" style = "max-width: 18rem;" >' +
         '<div id="ng' + aux + '" class="card-header">' + nom + '</div>' +
         '<div class="card-body text-info">' +
-        '<h5 class="card-title">' + dia + ':' + ini + '-' + fin + '</h5>' +
+        '<h5 class="card-title">' + dia + ':' + ini + '-' + fin + '</h5> <h6 class="card-title">Salon:'+salon+'</h6>' +
         '<p id="incr' + c + '" class="card-text">Inscribete</p>' + '<div class="row">' +
         '<div class="col hov" data-toggle="modal" data-target="#modalg' + c + '"  >' +
         '<span class="material-icons">' + 'info' + '</span>' + '</div>' + '<div class="col hov" id="chatdiseño">' +
