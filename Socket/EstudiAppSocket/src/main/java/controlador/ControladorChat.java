@@ -90,6 +90,7 @@ public class ControladorChat extends WebSocketServer{
         	}
         	
         	chat.addConectado(nombre, conn);
+        	chat.sendTodo(conn);
         }else if(type.equalsIgnoreCase("close")) {
         	System.out.println(jsonObject.toString());
         }

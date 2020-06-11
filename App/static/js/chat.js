@@ -1,7 +1,7 @@
 
 let chatsActivos =['chat_general']
 
-const url = 'ws://25.133.208.104:30000';
+const url = 'ws://localhost:30000';
 const websocket = new WebSocket(url);
 
 websocket.onopen = function (evt) {
@@ -53,6 +53,7 @@ function minChat(chat_page) {
 
 function closeChat(chat_page) {
   let chat = $(chat_page).parent().parent().parent()
+  chat.find('.msg-page').empty()
   chat.slideToggle()
 }
 
@@ -95,7 +96,11 @@ function reciveMsg(mensaje) {
   let msg = JSON.parse(mensaje.data);
 
   if (msg.type === 'msg') {
-    drawRecivedMsg(msg);
+    if(msg.from === actualUsuario.nombre){
+      drawMsgOut(msg)
+    }else{
+      drawRecivedMsg(msg);
+    }
   }
 }
 

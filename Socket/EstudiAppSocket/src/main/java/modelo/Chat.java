@@ -38,10 +38,22 @@ public class Chat {
 		System.out.println(this.nombre+" "+ info);
 		
 		for (String key : this.conectados.keySet()) {
-			this.conectados.get(key).send(info);
+			if(!key.equalsIgnoreCase(msg.getFrom())) {
+				this.conectados.get(key).send(info);
+			}
 		}
 		
 		
+	}
+	
+	public void sendTodo(WebSocket conn) {
+		
+		for(Msg msg: this.mensajes) {
+			String info = "{\"type\":\"msg\", \"from\":\""+msg.getFrom()+"\", \"to\":\""+this.nombre+"\""
+					+ ", \"msg\":\""+msg.getMensaje()+"\", \"time\":\""+msg.getHora()+"\"}";
+			
+			conn.send(info);
+		}
 	}
 	
 	public HashMap<String, WebSocket> getConectados() {

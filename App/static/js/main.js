@@ -38,6 +38,11 @@ var baseDeDatosUsuarios = [
     }
 ]
 
+$('#abrirChatGeneral').click(function(){
+    ingresoGeneral()
+    $('#chat_general').show()
+});
+
 $('#Cuenta').click(function () {
     $('#login').hide(1000);
     $('#estudiante').show(1000);
@@ -51,8 +56,10 @@ $('#Ingresar').click(function () {
     var passIni = $('#exampleInputPassword1').val();
     for (i=0; i <baseDeDatosUsuarios.length; i++) {
         if(baseDeDatosUsuarios[i].correo==correoIni){
-            cumple=1;
-            actualUsuario = baseDeDatosUsuarios[i]
+            if(baseDeDatosUsuarios[i].contraseña==passIni){
+                cumple=1;
+                actualUsuario = baseDeDatosUsuarios[i]
+            } 
         }
     }
     if(cumple==1){
