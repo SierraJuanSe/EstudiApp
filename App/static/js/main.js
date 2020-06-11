@@ -223,6 +223,7 @@ function Consultas(cons) {
             var carta = document.getElementById('incr' + i).parentNode.parentNode.parentNode.id;
             var inc = document.getElementById('incr' + i).textContent;
             console.log(carta + inc);
+            console.log(carta + inc);
             if (inc != 'Estas inscrito') {
 
                 $('#' + carta).css("display", "none");
@@ -254,12 +255,12 @@ function Consultas(cons) {
             var carta = document.getElementById('ng' + (i + 1)).parentNode.parentNode.id;
             var inc = document.getElementById('ng' + (i + 1)).textContent;
             var car;
-              console.log(carta+inc);
+            console.log(carta + inc);
             if (inc != cons) {
-               $('#' + carta).css("display", "none");
-            }else{
-                car=carta;
-                g=0;
+                $('#' + carta).css("display", "none");
+            } else {
+                car = carta;
+                g = 0;
                 $('#' + carta).css("display", "inline");
                 $('#inputbuscar').val('');
             }
@@ -296,6 +297,7 @@ function botonesDatosQuemados() {
 
     for (let i = 1; i <= 12; i++) {
         $('#schat' + i).click(function () {
+
         });
 
         $('#sadd' + i).click(function () {
