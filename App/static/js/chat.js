@@ -12,6 +12,17 @@ websocket.onmessage = function (mensaje) {
   reciveMsg(mensaje)
 }
 
+websocket.onclose = function (evt) {
+  info = {
+    type: 'close',
+    from: nombre,
+  }
+  console.log("--Desconectado--" + evt.data);
+  websocket.close();
+  $('#tablero').hide(500);
+  $('#menu').show(500);
+};
+
 /* Funciones de click */
 $(document).on('click', '.min-chat',function () {
   minChat(this);
@@ -113,15 +124,12 @@ function ping() {
 }
 
 /* funciones de prueba */
-$('#btChatBases').click(function () {
-  openChat('ChatBases')
-})
 
 function openChat(grupo) {
-  let chatCont = $('.chat-container')
+  let chatCont = $('#chatContainer')
 
   if(chatsActivos.includes(grupo)){
-    $('#'+grupo).show()
+    $('#chat'+grupo).show()
   }else{
     chatCont.append(drawChat(grupo))
     chatsActivos.push(grupo)
@@ -129,14 +137,14 @@ function openChat(grupo) {
 }
 
 function drawChat(grupo) {
-  let chatDiv = '<div class="chati"><div id="'+grupo+'" class="chat" value>' //falta cerrar
+  let chatDiv = '<div class="chati"><div id="chat'+grupo+'" class="chat" value>' //falta cerrar
   chatDiv += '<div class="msg-header"><div class="msg-header-name"><h4>'+grupo+'</h4></div>\
   <div class="header-icons"><i class="min-chat fas fa-minus"></i><i class="close-chat fas fa-times"></i></div></div>'
   chatDiv += '<div class="chat-page">' //falta cerrar
   chatDiv += '<div class="msg-inbox"><div class="chats"><div class="msg-page"></div></div></div>'
-  chatDiv += '<div class="msg-bottom"><div class="input-group">\
+  chatDiv += '<div class="msg-bottom"><div class="input-group ipt-group-chat">\
   <textarea type="text" class="form-control ipt-chat" placeholder="escribe mensaje..." rows="1"></textarea>\
-  <div class="input-group-append btn-send"><span class="input-group-text"><i class="fab fa-telegram-plane fa-lg"></i>\
+  <div class="input-group-append btn-send"><span class="input-group-text input-group-text-chat"><i class="fab fa-telegram-plane fa-lg"></i>\
   </span></div></div></div>'
   chatDiv += '</div></div></div>'
 

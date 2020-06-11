@@ -1,5 +1,6 @@
 var Ngrupos = 11;
 var aux = 12;
+let inscrito = ['bd', 'Literatura', 'EcuacionesDif', 'Econometria', 'Phyton']
 
 $('#Cuenta').click(function () {
     $('#login').hide(1000);
@@ -11,13 +12,16 @@ $('#Ingresar').click(function () {
     $('#fondo').hide(1000);
     $('#menu').show(1000);
     $('#menu1').show(1000);
+    $('#chatContainer').show(1000)
 
+    ingresoGeneral()
 });
 
 
 $('#cerrar').click(function () {
     $('#fondo').show(1000);
     $('#menu').hide(1000);
+    $('#chatContainer').hide();
 });
 
 
@@ -254,12 +258,12 @@ function Consultas(cons) {
             var carta = document.getElementById('ng' + (i + 1)).parentNode.parentNode.id;
             var inc = document.getElementById('ng' + (i + 1)).textContent;
             var car;
-              console.log(carta+inc);
+            console.log(carta + inc);
             if (inc != cons) {
-               $('#' + carta).css("display", "none");
-            }else{
-                car=carta;
-                g=0;
+                $('#' + carta).css("display", "none");
+            } else {
+                car = carta;
+                g = 0;
                 $('#' + carta).css("display", "inline");
                 $('#inputbuscar').val('');
             }
@@ -296,6 +300,9 @@ function botonesDatosQuemados() {
 
     for (let i = 1; i <= 12; i++) {
         $('#schat' + i).click(function () {
+            let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+            openChat(grupo);
+            ingresocualquiera('chat'+grupo);
         });
 
         $('#sadd' + i).click(function () {
@@ -305,6 +312,8 @@ function botonesDatosQuemados() {
             $('#sadd' + i).css("display", "none");
             $('#delete' + i).css("display", "inline");
             $('#schat' + i).css("display", "inline");
+            let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+            inscrito.push(grupo)
         });
 
         $('#delete' + i).click(function () {
@@ -321,11 +330,33 @@ function botonesDatosQuemados() {
                         $('#sadd' + i).css("display", "inline");
                         $('#delete' + i).css("display", "none");
                         $('#schat' + i).css("display", "none");
-
+                        let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+                        inscrito.splice(inscrito.indexOf(grupo), 1)
+                        console.log(inscrito);
                     }
                 });
         });
 
 
     }
+}
+
+function ingresoGeneral(){
+    info = {
+        type: 'new',
+        from: nombre,
+        to: 'chat_general'
+    }
+
+    websocket.send(JSON.stringify(info))
+}
+
+function ingresocualquiera(cualquier){
+    info = {
+        type: 'new',
+        from: nombre,
+        to: cualquier
+    }
+
+    websocket.send(JSON.stringify(info))
 }

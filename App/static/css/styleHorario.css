@@ -7,9 +7,10 @@
   display: none;
 }
 
-body{
-  background-color: #EAEAEA;
+#div-horario{
+  background-color: rgba(144, 164, 253, 0.226);
 }
+
 
 td{
   height: 60px;

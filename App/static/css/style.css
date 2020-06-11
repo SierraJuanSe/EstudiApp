@@ -103,3 +103,7 @@ main, #logBody{
     margin-top: 50px;
     background-color: rgba(144, 164, 253, 0.226);
 }
+
+#items{
+    background-color:transparent !important;
+}
