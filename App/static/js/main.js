@@ -1,5 +1,42 @@
 var Ngrupos = 11;
 var aux = 12;
+let inscrito = ['bd', 'Literatura', 'EcuacionesDif', 'Econometria', 'Phyton']
+
+var actualUsuario;
+var baseDeDatosUsuarios = [
+    {
+        correo: 'johan.herrera01@correo.usa.edu.co',
+        contraseña: '111',
+        nombre: 'Johan',
+        apellido: 'Herrera',
+        carrera: 'Ingenieria de Sistemas y Telecomunicaciones',
+        semestre: '(6)'
+    },
+    {
+        correo: 'juan.sierra01@correo.usa.edu.co',
+        contraseña: '222',
+        nombre: 'Juan',
+        apellido: 'Sierra',
+        carrera: 'Ingenieria de Sistemas y Telecomunicaciones',
+        semestre: '(6)'
+    },
+    {
+        correo: 'luis.velasquez01@correo.usa.edu.co',
+        contraseña: '333',
+        nombre: 'Luis',
+        apellido: 'Velasquez',
+        carrera: 'Ingenieria de Sistemas y Telecomunicaciones',
+        semestre: '(6)'
+    },
+    {
+        correo: 'oscarjulianreyest@gmail.com',
+        contraseña: '444',
+        nombre: 'Oscar',
+        apellido: 'Reyes',
+        carrera: 'Ingenieria de Sistemas y Telecomunicaciones',
+        semestre: '(6)'
+    }
+]
 
 $('#Cuenta').click(function () {
     $('#login').hide(1000);
@@ -8,16 +45,35 @@ $('#Cuenta').click(function () {
 });
 
 $('#Ingresar').click(function () {
-    $('#fondo').hide(1000);
-    $('#menu').show(1000);
-    $('#menu1').show(1000);
-
+    var cumple=0;
+    var i=0;
+    var correoIni = $('#exampleInputEmail1').val();
+    var passIni = $('#exampleInputPassword1').val();
+    for (i=0; i <baseDeDatosUsuarios.length; i++) {
+        if(baseDeDatosUsuarios[i].correo==correoIni){
+            cumple=1;
+            actualUsuario = baseDeDatosUsuarios[i]
+        }
+    }
+    if(cumple==1){
+        $('#fondo').hide(1000);
+        $('#menu').show(1000);
+        $('#menu1').show(1000);
+        $('#nombreUsuario').append(actualUsuario.nombre)
+        $('#chatContainer').show(1000)
+        ingresoGeneral()
+    }else{
+        swal("Error", "Verifica tus datos", "error")
+    }
+    
 });
 
 
 $('#cerrar').click(function () {
     $('#fondo').show(1000);
     $('#menu').hide(1000);
+    $('#chatContainer').hide();
+    window.location.reload(true); 
 });
 
 
@@ -67,15 +123,28 @@ $('#Crear').click(function () {
     var nom = $('#nombre').val();
     var ape = $('#apellido').val();
     var carre = $('#carrera').find('option:selected').text();
-    var semestre = $('#semestre').find('option:selected').text();
-    var correo = $('#correo').val();
+    var semestre1 = $('#semestre').find('option:selected').text();
+    var correo1 = $('#email').val();
     var pass = $('#password').val();
     var vpass = $('#verifypass').val();
 
+    var usuario ={
+        correo: correo1,
+        contraseña: pass,
+        nombre: nom,
+        apellido: ape,
+        carrera: carre,
+        semestre: semestre1
+    };
+
+
     if (pass == vpass) {
+
+        baseDeDatosUsuarios.push(usuario);
         swal("Muy bien!", "Has creado una cuenta!", "success").then((value => {
             $('#login').show(1000);
             $('#estudiante').hide(1000);
+            console.log(baseDeDatosUsuarios);
         }
 
         ));
@@ -297,7 +366,9 @@ function botonesDatosQuemados() {
 
     for (let i = 1; i <= 12; i++) {
         $('#schat' + i).click(function () {
-
+            let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+            openChat(grupo);
+            ingresocualquiera('chat'+grupo);
         });
 
         $('#sadd' + i).click(function () {
@@ -307,6 +378,8 @@ function botonesDatosQuemados() {
             $('#sadd' + i).css("display", "none");
             $('#delete' + i).css("display", "inline");
             $('#schat' + i).css("display", "inline");
+            let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+            inscrito.push(grupo)
         });
 
         $('#delete' + i).click(function () {
@@ -323,11 +396,33 @@ function botonesDatosQuemados() {
                         $('#sadd' + i).css("display", "inline");
                         $('#delete' + i).css("display", "none");
                         $('#schat' + i).css("display", "none");
-
+                        let grupo = $(this).parent().parent().parent().parent().parent().attr('id');
+                        inscrito.splice(inscrito.indexOf(grupo), 1)
+                        console.log(inscrito);
                     }
                 });
         });
 
 
     }
+}
+
+function ingresoGeneral(){
+    info = {
+        type: 'new',
+        from: actualUsuario.nombre,
+        to: 'chat_general'
+    }
+
+    websocket.send(JSON.stringify(info))
+}
+
+function ingresocualquiera(cualquier){
+    info = {
+        type: 'new',
+        from: actualUsuario.nombre,
+        to: cualquier
+    }
+
+    websocket.send(JSON.stringify(info))
 }
